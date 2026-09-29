@@ -1,0 +1,15 @@
+    \draw
+    (0,4) node[above] {$V_{DD}$}
+    (0,4) to[short] (0,3.5)
+    (0,3.5) node[pmos, anchor=S] (MP) {}
+    (MP.D) to[short] (0,2)
+    (0,2) node[circ] {} -- ++(1,0) node[right] {$V_{out}$}
+    (0,2) to[short] (0,1.5)
+    (0,1.5) node[nmos, anchor=D] (MN) {}
+    (MN.S) to[short] (0,0)
+    (0,0) node[below] {GND}
+    ;
+    \draw
+    (MP.G) -- (-1,2.75) -- (MN.G)
+    (-1,2.75) node[left] {$V_{in}$}
+    ;

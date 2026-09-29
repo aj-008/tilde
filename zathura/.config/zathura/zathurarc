@@ -1,0 +1,37 @@
+include /home/ajrom/.cache/zathura/colors.zathurarc
+
+# --- Rendering ---
+set recolor true
+set recolor-keephue true
+set recolor-reverse-video true
+
+# --- UI ---
+set guioptions "none"
+set window-title-basename true
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+set page-cache-size 20
+
+# --- Behavior ---
+set selection-clipboard clipboard
+set adjust-open "best-fit"
+set scroll-step 60
+set zoom-step 10
+set incremental-search true
+set search-hadjust true
+set synctex true
+
+# --- Colemak-DH movement remap ---
+# Physical H/J/K/L now output m/n/e/i, so scroll moves there to keep the
+# muscle memory. This overwrites the default h/j/k/l scroll binds, and
+# also overwrites the default "m" quickmark-set bind (m is now scroll-left).
+map m scroll left
+map n scroll down
+map e scroll up
+map i scroll right
+
+# n/N (search next/prev) got displaced by the scroll remap above.
+# j and k are free now that scrolling moved to m/n/e/i, so search
+# lives there instead -- J/K (next/prev page) are untouched.
+map k search forward
+map j search backward

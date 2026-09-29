@@ -1,0 +1,7 @@
+singleton Bluetooth 1.0 Bluetooth.qml
+singleton ControlCenter 1.0 ControlCenter.qml
+singleton Network 1.0 Network.qml
+singleton Notifications 1.0 Notifications.qml
+singleton Weather 1.0 Weather.qml
+singleton Caffeine 1.0 Caffeine.qml
+singleton NightMode 1.0 NightMode.qml

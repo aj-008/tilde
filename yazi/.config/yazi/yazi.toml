@@ -1,0 +1,21 @@
+[opener]
+edit = [
+	{ run = 'yazi-edit "$@"', desc = "Open in nvim", block = false },
+]
+
+[open]
+prepend_rules = [
+	{ mime = "text/*", use = "edit" },
+	{ url = "*.rs",   use = "edit" },
+	{ url = "*.toml", use = "edit" },
+	{ url = "*.lua",  use = "edit" },
+	{ url = "*.py",   use = "edit" },
+	{ url = "*.js",   use = "edit" },
+	{ url = "*.ts",   use = "edit" },
+	{ url = "*.c",    use = "edit" },
+	{ url = "*.cpp",  use = "edit" },
+	{ url = "*.h",    use = "edit" },
+	{ url = "*.sh",   use = "edit" },
+	{ url = "*.md",   use = "edit" },
+]
+

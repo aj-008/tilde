@@ -1,0 +1,46 @@
+    % P1 and P2 (PMOS)
+    \draw (-1.2, 2.8) node[pmos] (P1) {};
+    \node[right, color=pcolor, font=\bfseries\Large] at (P1.text) {P1};
+
+    \draw (0.8, 2.8) node[pmos] (P2) {};
+    \node[right, color=pcolor, font=\bfseries\Large] at (P2.text) {P2};
+
+    % N1 and N2 (NMOS)
+    \draw (0.8, 1.0) node[nmos] (N1) {};
+    \node[right, color=ncolor, font=\bfseries\Large] at (N1.text) {N1};
+
+    \draw (0.8, -0.8) node[nmos] (N2) {};
+    \node[right, color=ncolor, font=\bfseries\Large] at (N2.text) {N2};
+
+
+    % Top Power Rail (3V)
+    \draw (-1.8, 4.2) -- (2.0, 4.2);
+    \node[above, font=\bfseries\Large] at (0.1, 4.2) {3V};
+
+    \draw (P1.source) -- (-1.2, 4.2);
+    \draw (P2.source) -- (0.8, 4.2);
+
+
+    % Output connections and Node (Out Y)
+    \draw (P1.drain) |- (0.8, 1.9) -- (P2.drain);
+    \draw (0.8, 1.9) to[short, *-] (N1.drain);
+    \draw (0.8, 1.9) -- (2.4, 1.9) node[right, font=\bfseries\Large] {Out (Y)};
+
+
+    % NMOS Series Connection
+    \draw (N1.source) -- (N2.drain);
+
+
+    % Bottom Power Rail / Ground (0V)
+    \draw (N2.source) -- (0.8, -2.0);
+    \draw (0.8, -2.0) node[ground, scale=1.5] {};
+
+
+    % Input A Routing
+    \draw (-2.8, 1.0) node[left, font=\bfseries\Large] {In (A)} -- (N1.gate);
+    \draw (-2.2, 1.0) to[short, *-] (-2.2, 2.8) -- (P1.gate);
+
+
+    % Input B Routing
+    \draw (-2.8, -0.8) node[left, font=\bfseries\Large] {In (B)} -- (N2.gate);
+    \draw (-0.3, -0.8) to[short, *-] (-0.3, 2.8) -- (P2.gate);

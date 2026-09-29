@@ -1,0 +1,87 @@
+# Colemak-DH navigation remap for yazi.
+# Physical h/j/k/l positions type m/n/e/i under Colemak-DH, so the
+# vim-style movement binds are pointed at the letters your fingers
+# actually land on, same convention as your nvim/tmux/qutebrowser configs.
+#
+# Two defaults collide with the new letters and got relocated to the
+# now-vacant h/j/N slots:
+#   - linemode leader (m,s / m,p / m,b / m,m / m,o / m,n) -> moved to `h`
+#   - find_arrow next/prev (n / N)                        -> moved to `j` / `J`
+#
+# [input] and [confirm] are intentionally left at yazi defaults — see
+# note at the bottom of this file for why.
+
+[mgr]
+prepend_keymap = [
+	# Movement (h j k l -> m n e i)
+	{ on = "m", run = "leave",       desc = "Back to the parent directory" },
+	{ on = "n", run = "arrow next",  desc = "Next file" },
+	{ on = "e", run = "arrow prev",  desc = "Previous file" },
+	{ on = "i", run = "enter",       desc = "Enter the child directory" },
+
+	# Shifted movement (H J K L -> M N E I)
+	{ on = "M", run = "back",     desc = "Back to previous directory" },
+	{ on = "N", run = "seek 5",   desc = "Seek down 5 units in the preview" },
+	{ on = "E", run = "seek -5",  desc = "Seek up 5 units in the preview" },
+	{ on = "I", run = "forward",  desc = "Forward to next directory" },
+
+	{ on = [ "h", "s" ], run = "linemode size",        desc = "Linemode: size" },
+	{ on = [ "h", "p" ], run = "linemode permissions",  desc = "Linemode: permissions" },
+	{ on = [ "h", "b" ], run = "linemode btime",        desc = "Linemode: btime" },
+	{ on = [ "h", "m" ], run = "linemode mtime",        desc = "Linemode: mtime" },
+	{ on = [ "h", "o" ], run = "linemode owner",        desc = "Linemode: owner" },
+	{ on = [ "h", "n" ], run = "linemode none",         desc = "Linemode: none" },
+
+	{ on = "l", run = "find_arrow",             desc = "Next found" },
+	{ on = "L", run = "find_arrow --previous",  desc = "Previous found" },
+]
+
+
+[input]
+prepend_keymap = [
+	{ on = "k", run = "insert",   desc = "Enter insert mode" },
+	{ on = "K", run = "recall -1", desc = "Recall previous input" },
+]
+
+[tasks]
+prepend_keymap = [
+	{ on = "n", run = "arrow next", desc = "Next task" },
+	{ on = "e", run = "arrow prev", desc = "Previous task" },
+]
+
+[spot]
+prepend_keymap = [
+	{ on = "n", run = "arrow next",  desc = "Next line" },
+	{ on = "e", run = "arrow prev",  desc = "Previous line" },
+	{ on = "m", run = "swipe prev",  desc = "Swipe to previous file" },
+	{ on = "i", run = "swipe next",  desc = "Swipe to next file" },
+]
+
+[pick]
+prepend_keymap = [
+	{ on = "n", run = "arrow next", desc = "Next option" },
+	{ on = "e", run = "arrow prev", desc = "Previous option" },
+]
+
+[help]
+prepend_keymap = [
+	{ on = "n", run = "arrow next", desc = "Next line" },
+	{ on = "e", run = "arrow prev", desc = "Previous line" },
+]
+
+# ---------------------------------------------------------------------------
+# [input] and [confirm] are left at defaults on purpose:
+#
+# [input] binds `l` to "move right a char" AND `i` to "enter insert mode" —
+# under Colemak-DH those are two different physical keys, so there's no
+# clean 1:1 swap the way there is for pure navigation. This is the same
+# collision you hit in your Neovim Colemak-DH config and never fully
+# resolved. Right now `i` still enters insert mode (default), and `a`/`A`/
+# `I`/`s`/`S`/`c`/`C` all still work as alternate ways in, so nothing is
+# broken — it's just not remapped. Tell me how you want it resolved (e.g.
+# insert mode relocated to a different key) and I'll add it here.
+#
+# [confirm] uses `y`/`n` for yes/no on delete prompts etc. — those aren't
+# vim navigation, they're literal mnemonic keys, so remapping j->n there
+# would shadow "no" with "arrow down" on multi-line prompts. Left alone.
+# ---------------------------------------------------------------------------

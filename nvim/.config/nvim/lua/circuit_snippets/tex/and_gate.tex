@@ -1,0 +1,54 @@
+  \draw (-1.2, 2.8) node[pmos] (P1) {};
+  \node[right, color=pcolor, font=\bfseries] at (P1.text) {P1};
+  \draw (0.8, 2.8) node[pmos] (P2) {};
+  \node[right, color=pcolor, font=\bfseries] at (P2.text) {P2};
+  
+  % NMOS Transistors (Series)
+  \draw (0.8, 1.0) node[nmos] (N1) {};
+  \node[right, color=ncolor, font=\bfseries] at (N1.text) {N1};
+  \draw (0.8, -0.8) node[nmos] (N2) {};
+  \node[right, color=ncolor, font=\bfseries] at (N2.text) {N2};
+
+  % Power Rail VDD (3V)
+  \draw (-1.8, 4.2) -- (3.5, 4.2) node[above, font=\bfseries] at (0.8, 4.2) {$V_{DD}$ (3V)};
+  \draw (P1.source) -- (-1.2, 4.2);
+  \draw (P2.source) -- (0.8, 4.2);
+
+  % Internal NAND Output Node (\overline{A \cdot B})
+  \draw (P1.drain) |- (0.8, 1.9) -- (P2.drain);
+  \draw (0.8, 1.9) to[short, *-] (N1.drain);
+
+  % NMOS Series & Ground Connection
+  \draw (N1.source) -- (N2.drain);
+  \draw (N2.source) -- (0.8, -2.0) node[ground, scale=1.5] {};
+  \draw (-1.8, -2.0) -- (3.5, -2.0); % Common Ground Rail
+
+  % Input A Routing
+  \draw (-2.8, 1.0) node[left, font=\bfseries] {$In (A)$} -- (N1.gate);
+  \draw (-2.2, 1.0) to[short, *-] (-2.2, 2.8) -- (P1.gate);
+
+  % Input B Routing
+  \draw (-2.8, -0.8) node[left, font=\bfseries] {$In (B)$} -- (N2.gate);
+  \draw (-0.3, -0.8) to[short, *-] (-0.3, 2.8) -- (P2.gate);
+
+  % -----------------------------------------------------------------
+  % SECTION 2: INVERTER STAGE (Output Inversion)
+  % -----------------------------------------------------------------
+  % Inverter Transistors
+  \draw (3.0, 2.8) node[pmos] (MP) {};
+  \node[right, color=pcolor, font=\bfseries] at (MP.text) {MP};
+  \draw (3.0, 1.0) node[nmos] (MN) {};
+  \node[right, color=ncolor, font=\bfseries] at (MN.text) {MN};
+
+  % Inverter Power & Ground Connections
+  \draw (MP.source) -- (3.0, 4.2);
+  \draw (MN.source) -- (3.0, -2.0);
+
+  % Connect NAND Output to Inverter Input Gates
+  \draw (0.8, 1.9) -- (2.0, 1.9);
+  \draw (2.0, 1.9) -- (2.0, 2.8) -- (MP.gate);
+  \draw (2.0, 1.9) -- (2.0, 1.0) -- (MN.gate);
+
+  % Inverter Output Connection (Final AND Output)
+  \draw (MP.drain) -- (MN.drain);
+  \draw (3.0, 1.9) to[short, *-] (4.2, 1.9) node[right, font=\bfseries\Large] {Out ($Y = A \cdot B$)};

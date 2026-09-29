@@ -1,0 +1,10 @@
+-- ~/.config/hypr/hyprland.lua
+require("colors")   
+require("monitors")
+require("env")
+require("appearance")
+require("input")
+require("workspaces")
+require("windowrules")
+require("autostart")
+require("keybinds")

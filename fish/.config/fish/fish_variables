@@ -1,0 +1,5 @@
+# This file contains fish universal variable definitions.
+# VERSION: 3.0
+SETUVAR --export ANDROID_HOME:/home/ajrom/Android/Sdk
+SETUVAR __fish_initialized:4300
+SETUVAR fish_user_paths:/home/ajrom/Android/Sdk/platform\x2dtools\x1e/home/ajrom/development/flutter/bin\x1e/home/ajrom/\x2ecargo/bin\x1e/home/ajrom/\x2elocal/bin
