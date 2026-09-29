@@ -1,0 +1,16 @@
+# Font
+font_family      IBM Plex Mono
+font_size        12
+
+# Cursor
+cursor_trail           0
+cursor_blink_interval  0
+
+# Window
+window_padding_width   10
+background_opacity     0.85
+confirm_os_window_close 0
+remember_window_size   no
+
+tab_bar_style      hidden
+enable_audio_bell  no
